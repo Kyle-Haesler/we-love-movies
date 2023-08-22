@@ -45,7 +45,7 @@ describe("Movie Routes", () => {
         .where({ movie_id: previous.movie_id });
 
       const response = await request(app).get("/movies?is_showing=true");
-
+      
       expect(response.body.data).toHaveLength(15);
     });
   });

@@ -24,13 +24,14 @@ function read(req, res, next){
 
 async function list(req, res, next){
 const {is_showing} = req.query
-if(is_showing === "true"){
+    if(is_showing === "true"){
     const data = await service.listAllShowingMovies()
     res.json({data})
-}
+    } 
     const data = await service.list()
 res.json({data})
 }
+
 
 
 module.exports = {
