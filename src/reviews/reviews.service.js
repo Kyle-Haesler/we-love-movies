@@ -22,7 +22,7 @@ function read(reviewId){
 }
 
 function update(updatedReview){
-    return knex("reviews as r").join("critics as c", "r.critic_id", "c.critic_id").select("*").update(updatedReview, "*").where({"r.review_id": Number(updatedReview.review_id)}).then((createdRecords) => createdRecords[0]).then(addCriticsCategory)
+    return knex("reviews as r").join("critics as c", "r.critic_id", "c.critic_id").select("*").update(updatedReview, "*").where({"r.review_id": updatedReview.review_id}).then((createdRecords) => createdRecords[0]).then(addCriticsCategory)
 }
 function getAllCriticsData(){
     return knex("reviews as r").join("critics as c", "r.critic_id", "c.critic_id").select("*").then(addCriticsCategory)

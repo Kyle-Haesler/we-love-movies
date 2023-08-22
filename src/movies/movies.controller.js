@@ -22,20 +22,16 @@ function read(req, res, next){
 
 
 
-async function list(req, res, next){
-const {is_showing} = req.query
-    if(is_showing === "true"){
-    const data = await service.listAllShowingMovies()
+async function list(req, res, next) {
+    const showing = req.query.is_showing
+    const data = showing ? await service.listAllShowingMovies(): await service.list();
     res.json({data})
-    } 
-    const data = await service.list()
-res.json({data})
-}
-
+  }
 
 
 module.exports = {
 list: [asyncErrorBoundary(list)],
-read: [asyncErrorBoundary(movieExists), read]
+read: [asyncErrorBoundary(movieExists), read],
+
 
 }

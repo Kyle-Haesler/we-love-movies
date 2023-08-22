@@ -5,6 +5,8 @@ const methodNotAllowed = require("../errors/methodNotAllowed")
 
 
 
+
+
 router.route("/:movieId").get(controller.read).all(methodNotAllowed)
 router.route("/").get(controller.list).all(methodNotAllowed)
 
