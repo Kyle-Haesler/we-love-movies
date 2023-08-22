@@ -4,6 +4,5 @@ const methodNotAllowed = require("../errors/methodNotAllowed")
 
 
 router.route("/:reviewId").delete(controller.delete).put(controller.update).all(methodNotAllowed)
-router.route("/").get(controller.getAll).all(methodNotAllowed)
 
 module.exports = router

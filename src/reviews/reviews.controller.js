@@ -22,19 +22,20 @@ async function destroy(req, res, next){
 }
 
 async function update(req, res, next){
+    const time = new Date().toISOString()
     const updatedReview = {
         ...res.locals.review,
-        ...req.body.data,
+         ...req.body.data,
         review_id: res.locals.review.review_id,
-      };
-      const data = await service.update(updatedReview)
-      res.json({data})
-      
-}
+        updated_at: time
 
-async function getAllCriticsData(req, res, next){
-    const data = await service.getAllCriticsData()
-    res.json({data})
+      }
+     
+     
+      
+      await service.update(updatedReview);
+      const data = await service.readUpdateWithCritic(res.locals.review.review_id)
+      res.json({data})
 }
 
 
@@ -44,6 +45,7 @@ async function getAllCriticsData(req, res, next){
 module.exports = {
     delete: [asyncErrorBoundary(reviewExists), asyncErrorBoundary(destroy)],
     update: [asyncErrorBoundary(reviewExists), asyncErrorBoundary(update)],
-    getAll: [asyncErrorBoundary(getAllCriticsData)]
+    
+    
 
 }
